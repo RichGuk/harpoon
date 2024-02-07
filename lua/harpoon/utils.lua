@@ -1,4 +1,9 @@
 local M = {}
+local Path = require("plenary.path")
+
+function M.normalize_path(buf_name, root)
+    return Path:new(buf_name):make_relative(root)
+end
 
 function M.trim(str)
     return str:gsub("^%s+", ""):gsub("%s+$", "")
