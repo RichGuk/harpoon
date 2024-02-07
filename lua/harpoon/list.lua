@@ -1,5 +1,6 @@
 local Logger = require("harpoon.logger")
 local Extensions = require("harpoon.extensions")
+local utils = require("harpoon.utils")
 
 --- @class HarpoonNavOptions
 --- @field ui_nav_wrap? boolean
@@ -127,6 +128,15 @@ function HarpoonList:get_by_display(name)
         return nil
     end
     return self.items[index]
+end
+
+function HarpoonList:get_current_index()
+    local displayed = self:display()
+    local bufname = utils.normalize_path(
+        vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()), self.config.get_root_dir()
+    )
+
+    return index_of(displayed, bufname)
 end
 
 --- much inefficiencies.  dun care
