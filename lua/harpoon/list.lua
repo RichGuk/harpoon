@@ -133,7 +133,8 @@ end
 function HarpoonList:get_current_index()
     local displayed = self:display()
     local bufname = utils.normalize_path(
-        vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()), self.config.get_root_dir()
+        vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()),
+        self.config.get_root_dir()
     )
 
     return index_of(displayed, bufname)
